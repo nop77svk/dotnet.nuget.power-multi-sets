@@ -31,7 +31,7 @@ public class GetCombinations_Tests
     public void GetCombinations_SingleElementTuple_Returns_SingleElementCollectionsOfAllElements()
     {
         // Arrange
-        int expectedResultsCount = _testElements.Length.BinomialCoefficient(1);
+        int expectedResultsCount = _testElements.Length.Over(1);
 
         IList<IList<KeyValuePair<int, char>>> expectedResult = new List<IList<KeyValuePair<int, char>>>();
         for (int i = 0; i < _testElements.Length; i++)
@@ -54,7 +54,7 @@ public class GetCombinations_Tests
     public void GetCombinations_DoubleElementTuple_Returns_ProperDoublesOfElements()
     {
         // Arrange
-        int expectedResultsCount = _testElements.Length.BinomialCoefficient(2);
+        int expectedResultsCount = _testElements.Length.Over(2);
 
         IList<IList<KeyValuePair<int, char>>> expectedResult = new List<IList<KeyValuePair<int, char>>>();
         for (int i = 0; i < _testElements.Length - 1; i++)

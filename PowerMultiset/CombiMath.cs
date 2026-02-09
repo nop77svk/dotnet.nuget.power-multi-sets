@@ -2,7 +2,13 @@ namespace NoP77svk.PowerMultiset;
 
 public static class CombiMath
 {
-    public static int BinomialCoefficient(this int above, int below)
+    /// <summary>
+    /// Calculate binomial coefficient (N over M)
+    /// </summary>
+    /// <param name="above">The "N" (above) part</param>
+    /// <param name="below">The "M" (below) part</param>
+    /// <returns>The binomial coefficient of N over M</returns>
+    public static int Over(this int above, int below)
     {
         int result = 1;
 
@@ -15,7 +21,13 @@ public static class CombiMath
         return result;
     }
 
-    public static long BinomialCoefficient(this long above, long below)
+    /// <summary>
+    /// Calculate binomial coefficient (N over M)
+    /// </summary>
+    /// <param name="above">The "N" (above) part</param>
+    /// <param name="below">The "M" (below) part</param>
+    /// <returns>The binomial coefficient of N over M</returns>
+    public static long Over(this long above, long below)
     {
         long result = 1;
 
@@ -28,6 +40,11 @@ public static class CombiMath
         return result;
     }
 
+    /// <summary>
+    /// Calculate factorial of value
+    /// </summary>
+    /// <param name="value">The input value to be calculated upon</param>
+    /// <returns>The factorial of the input value</returns>
     public static int Factorial(this int value)
     {
         int result = 1;
@@ -40,6 +57,11 @@ public static class CombiMath
         return result;
     }
 
+    /// <summary>
+    /// Calculate factorial of value
+    /// </summary>
+    /// <param name="value">The input value to be calculated upon</param>
+    /// <returns>The factorial of the input value</returns>
     public static long Factorial(this long value)
     {
         long result = 1;
