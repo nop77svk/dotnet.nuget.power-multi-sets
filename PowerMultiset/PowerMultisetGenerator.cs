@@ -6,19 +6,28 @@ namespace NoP77svk.PowerMultiset
             => Permute(values.ToArray());
 
         public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> Permute<T>(this IList<T> values)
-            => Vary(values, values.Count);
+            => values.GeneratePowerMultiset(values.Count, true);
 
         public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> Combine<T>(this IEnumerable<T> values, int tupleSize)
             => Combine(values.ToArray(), tupleSize);
 
         public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> Combine<T>(this IList<T> values, int tupleSize)
-            => InternalGeneratePowerMultiset(values, tupleSize, new Stack<int>(), 0, false);
+            => values.GeneratePowerMultiset(tupleSize, false);
 
         public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> Vary<T>(this IEnumerable<T> values, int tupleSize)
             => Vary(values.ToArray(), tupleSize);
 
         public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> Vary<T>(this IList<T> values, int tupleSize)
-            => InternalGeneratePowerMultiset(values, tupleSize, new Stack<int>(), 0, true);
+            => values.GeneratePowerMultiset(tupleSize, true);
+
+        public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> GeneratePowerMultiset<T>(this IList<T> values, int tupleSize, bool enableOrderedTuples)
+            => InternalGeneratePowerMultiset(
+                values: values,
+                tupleSize: tupleSize,
+                usedInputIndices: new Stack<int>(),
+                startIndex: 0,
+                enableOrderedTuples: enableOrderedTuples
+            );
 
         private static IEnumerable<IEnumerable<KeyValuePair<int, T>>> InternalGeneratePowerMultiset<T>(IList<T> values, int tupleSize, Stack<int> usedInputIndices, int startIndex, bool enableOrderedTuples)
         {
