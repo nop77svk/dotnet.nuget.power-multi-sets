@@ -121,15 +121,13 @@ namespace NoP77svk.PowerMultiset
         /// </returns>
         public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> GeneratePowerMultiSet<T>(this IList<T> values, SubMultiSetElementOrder elementOrder)
         {
-            var result = Enumerable.Empty<IEnumerable<KeyValuePair<int, T>>>();
-
             for (int i = 0; i <= values.Count; i++)
             {
-                var singleTupleSizeResult = values.GenerateSubMultiSet(i, elementOrder);
-                result = result.Concat(singleTupleSizeResult);
+                foreach (var submultiset in values.GenerateSubMultiSet(i, elementOrder))
+                {
+                    yield return submultiset;
+                }
             }
-
-            return result;
         }
 
         private static IEnumerable<IEnumerable<KeyValuePair<int, T>>> GenerateSubMultiSet<T>(this IList<T> values, int tupleSize, SubMultiSetElementOrder elementOrder)
