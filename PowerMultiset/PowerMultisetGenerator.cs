@@ -2,32 +2,32 @@ namespace NoP77svk.PowerMultiset
 {
     public static class PowerMultisetGenerator
     {
-        public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> GetPermutations<T>(this IEnumerable<T> values)
-            => GetPermutations(values.ToArray());
+        public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> Permute<T>(this IEnumerable<T> values)
+            => Permute(values.ToArray());
 
-        public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> GetPermutations<T>(this IList<T> values)
-            => GetVariations(values, values.Count);
+        public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> Permute<T>(this IList<T> values)
+            => Vary(values, values.Count);
 
-        public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> GetCombinations<T>(this IEnumerable<T> values, int tupleSize)
-            => GetCombinations(values.ToArray(), tupleSize);
+        public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> Combine<T>(this IEnumerable<T> values, int tupleSize)
+            => Combine(values.ToArray(), tupleSize);
 
-        public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> GetCombinations<T>(this IList<T> values, int tupleSize)
-            => InternalGetVariations(values, tupleSize, new Stack<int>(), 0, false);
+        public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> Combine<T>(this IList<T> values, int tupleSize)
+            => InternalGeneratePowerMultiset(values, tupleSize, new Stack<int>(), 0, false);
 
-        public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> GetVariations<T>(this IEnumerable<T> values, int tupleSize)
-            => GetVariations(values.ToArray(), tupleSize);
+        public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> Vary<T>(this IEnumerable<T> values, int tupleSize)
+            => Vary(values.ToArray(), tupleSize);
 
-        public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> GetVariations<T>(this IList<T> values, int tupleSize)
-            => InternalGetVariations(values, tupleSize, new Stack<int>(), 0, true);
+        public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> Vary<T>(this IList<T> values, int tupleSize)
+            => InternalGeneratePowerMultiset(values, tupleSize, new Stack<int>(), 0, true);
 
-        private static IEnumerable<IEnumerable<KeyValuePair<int, T>>> InternalGetVariations<T>(IList<T> values, int tupleSize, Stack<int> usedInputIndices, int startIndex, bool enableOrderedTuples)
+        private static IEnumerable<IEnumerable<KeyValuePair<int, T>>> InternalGeneratePowerMultiset<T>(IList<T> values, int tupleSize, Stack<int> usedInputIndices, int startIndex, bool enableOrderedTuples)
         {
             if (tupleSize <= 0)
             {
-                var variation = usedInputIndices
+                var resultTuple = usedInputIndices
                     .Select(i => new KeyValuePair<int, T>(i, values[i]));
 
-                yield return variation;
+                yield return resultTuple;
                 yield break;
             }
 
@@ -47,11 +47,11 @@ namespace NoP77svk.PowerMultiset
 
                 usedInputIndices.Push(i);
                 int newStartIndex = enableOrderedTuples ? 0 : i + 1;
-                var oneMoreElementVariations = InternalGetVariations(values, tupleSize - 1, usedInputIndices, newStartIndex, enableOrderedTuples);
+                var tuplesWithOneMoreElement = InternalGeneratePowerMultiset(values, tupleSize - 1, usedInputIndices, newStartIndex, enableOrderedTuples);
 
-                foreach (var variation in oneMoreElementVariations)
+                foreach (var resultTuple in tuplesWithOneMoreElement)
                 {
-                    yield return variation;
+                    yield return resultTuple;
                 }
 
                 usedInputIndices.Pop();

@@ -14,7 +14,7 @@ public class GetCombinations_Tests
     public void GetCombinations_SingleElementTuple_Returns_SingleElementCollectionsOfAllElements()
     {
         // Arrange
-        int expectedResultsCount = CombiMath.BinomialCoefficient(_testElements.Length, 1);
+        int expectedResultsCount = _testElements.Length.BinomialCoefficient(1);
 
         IList<IList<KeyValuePair<int, char>>> expectedResult = new List<IList<KeyValuePair<int, char>>>();
         for (int i = 0; i < _testElements.Length; i++)
@@ -24,7 +24,7 @@ public class GetCombinations_Tests
         }
 
         // Act
-        var actualResult = PowerMultisetGenerator.GetCombinations(_testElements, 1)
+        var actualResult = PowerMultisetGenerator.Combine(_testElements, 1)
             .Select(x => x.OrderBy(kvp => kvp.Key).ToArray())
             .ToArray();
 
@@ -37,7 +37,7 @@ public class GetCombinations_Tests
     public void GetCombinations_DoubleElementTuple_Returns_ProperDoublesOfElements()
     {
         // Arrange
-        int expectedResultsCount = CombiMath.BinomialCoefficient(_testElements.Length, 2);
+        int expectedResultsCount = _testElements.Length.BinomialCoefficient(2);
 
         IList<IList<KeyValuePair<int, char>>> expectedResult = new List<IList<KeyValuePair<int, char>>>();
         for (int i = 0; i < _testElements.Length - 1; i++)
@@ -50,7 +50,7 @@ public class GetCombinations_Tests
         }
 
         // Act
-        var actualResult = PowerMultisetGenerator.GetCombinations(_testElements, 2)
+        var actualResult = PowerMultisetGenerator.Combine(_testElements, 2)
             .Select(x => x.OrderBy(kvp => kvp.Key).ToArray())
             .ToArray();
 
@@ -112,7 +112,7 @@ public class GetCombinations_Tests
         }
 
         // Act
-        var actualResult = PowerMultisetGenerator.GetCombinations(_testElements, _testElements.Length)
+        var actualResult = PowerMultisetGenerator.Combine(_testElements, _testElements.Length)
             .Select(x => x.OrderBy(kvp => kvp.Key).ToArray())
             .ToArray();
 
@@ -129,7 +129,7 @@ public class GetCombinations_Tests
         IList<IList<KeyValuePair<int, char>>> expectedResult = [_testElements.Select((v, i) => new KeyValuePair<int, char>(i, v)).ToArray()];
 
         // Act
-        var actualResult = PowerMultisetGenerator.GetCombinations(_testElements, _testElements.Length)
+        var actualResult = PowerMultisetGenerator.Combine(_testElements, _testElements.Length)
             .Select(x => x.OrderBy(kvp => kvp.Key).ToArray())
             .ToArray();
 

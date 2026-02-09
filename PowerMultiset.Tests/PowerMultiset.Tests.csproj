@@ -17,9 +17,9 @@
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="*" />
 		<PackageReference Include="NUnit" Version="*" />
 		<PackageReference Include="NUnit.Analyzers" Version="*" />
-		<PackageReference Include="NUnit3TestAdapter" Version="*" />
+        <PackageReference Include="NUnit3TestAdapter" Version="5.*" />
 
-		<Using Include="NUnit.Framework" />
+        <Using Include="NUnit.Framework" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -24,7 +24,7 @@ public class GetVariations_Tests
         }
 
         // Act
-        var actualResult = PowerMultisetGenerator.GetVariations(_testElements, 1)
+        var actualResult = PowerMultisetGenerator.Vary(_testElements, 1)
             .Select(x => x.ToArray())
             .ToArray();
 
@@ -55,7 +55,7 @@ public class GetVariations_Tests
         }
 
         // Act
-        var actualResult = PowerMultisetGenerator.GetVariations(_testElements, 2)
+        var actualResult = PowerMultisetGenerator.Vary(_testElements, 2)
             .Select(x => x.ToArray())
             .ToArray();
 
@@ -68,7 +68,7 @@ public class GetVariations_Tests
     public void GetVariations_FullLengthTuple_Returns_ProperAllElementsTuples()
     {
         // Arrange
-        int expectedResultsCount = Factorial(_testElements.Length);
+        int expectedResultsCount = _testElements.Length.Factorial();
 
         IList<IList<KeyValuePair<int, char>>> expectedResult = new List<IList<KeyValuePair<int, char>>>();
         for (int a = 0; a < _testElements.Length; a++)
@@ -117,7 +117,7 @@ public class GetVariations_Tests
         }
 
         // Act
-        var actualResult = PowerMultisetGenerator.GetVariations(_testElements, _testElements.Length)
+        var actualResult = PowerMultisetGenerator.Vary(_testElements, _testElements.Length)
             .Select(x => x.ToArray())
             .ToArray();
 
@@ -131,12 +131,12 @@ public class GetVariations_Tests
     {
         // Arrange
         int expectedResultsCount = Factorial(_testElements.Length);
-        IList<IList<KeyValuePair<int, char>>> expectedResult = PowerMultisetGenerator.GetPermutations(_testElements)
+        IList<IList<KeyValuePair<int, char>>> expectedResult = PowerMultisetGenerator.Permute(_testElements)
             .Select(x => x.ToArray())
             .ToArray();
 
         // Act
-        var actualResult = PowerMultisetGenerator.GetVariations(_testElements, _testElements.Length)
+        var actualResult = PowerMultisetGenerator.Vary(_testElements, _testElements.Length)
             .Select(x => x.ToArray())
             .ToArray();
 
