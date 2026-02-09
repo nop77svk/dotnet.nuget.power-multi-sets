@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<OutputType>Library</OutputType>
+		<IsPackable>false</IsPackable>
+
+		<RootNamespace>NoP77svk.CombiGen.Tests</RootNamespace>
+		<AssemblyName>NoP77svk.CombiGen.Tests</AssemblyName>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+
+		<SuppressTfmSupportBuildErrors>true</SuppressTfmSupportBuildErrors>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="coverlet.collector" Version="*" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="*" />
+		<PackageReference Include="NUnit" Version="*" />
+		<PackageReference Include="NUnit.Analyzers" Version="*" />
+		<PackageReference Include="NUnit3TestAdapter" Version="*" />
+
+		<Using Include="NUnit.Framework" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\CombiGen\CombiGen.csproj" />
+	</ItemGroup>
+
+</Project>

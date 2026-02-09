@@ -1,8 +1,29 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<OutputType>Library</OutputType>
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+		<RootNamespace>NoP77svk.CombiGen</RootNamespace>
+		<AssemblyName>NoP77svk.CombiGen</AssemblyName>
 
+		<PackageId>NoP77svk.CombiGen</PackageId>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageIcon>combi-gen.icon.png</PackageIcon>
+		<PackageLicenseExpression>CC-BY-SA-4.0</PackageLicenseExpression>
+		<PackageTags>library;netstandard</PackageTags>
+		<PackageType>Library</PackageType>
+		
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/nop77svk/dotnet.combi-gen</RepositoryUrl>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="$(ProjectDir)/../_assets/README.md" Pack="true" PackagePath="/" />
+		<None Include="$(ProjectDir)/../_assets/combi-gen.icon.png" Pack="true" PackagePath="/" />
+		<None Include="$(ProjectDir)/../_assets/LICENSE" Pack="true" PackagePath="/" />
+	</ItemGroup>
 </Project>
