@@ -98,7 +98,7 @@ namespace NoP77svk.PowerMultiset
         ///     otherwise each resulting multiset is a combination from the input <paramref name="values"/> multiset,</param>
         /// <typeparam name="T">The element type of the input multiset.</typeparam>
         /// <returns>
-        ///     <para>Enumerable of all possible submultisets of the input multiset. Each variation is a collection of key/value pairs where <list type="bullet">
+        ///     <para>Enumerable of all possible submultisets of the input multiset. Each submultiset is a collection of key/value pairs where <list type="bullet">
         ///         <item>key = the index of the original <paramref name="values"/> multiset element,</item>
         ///         <item>value = the original <paramref name="values"/> multiset element</item>
         ///     </list></para>
@@ -114,7 +114,7 @@ namespace NoP77svk.PowerMultiset
         ///     otherwise each resulting multiset is a combination from the input <paramref name="values"/> multiset,</param>
         /// <typeparam name="T">The element type of the input multiset.</typeparam>
         /// <returns>
-        ///     <para>Enumerable of all possible submultisets of the input multiset. Each variation is a collection of key/value pairs where <list type="bullet">
+        ///     <para>Enumerable of all possible submultisets of the input multiset. Each submultiset is a collection of key/value pairs where <list type="bullet">
         ///         <item>key = the index of the original <paramref name="values"/> multiset element,</item>
         ///         <item>value = the original <paramref name="values"/> multiset element</item>
         ///     </list></para>
