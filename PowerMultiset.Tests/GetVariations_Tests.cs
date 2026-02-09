@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using NoP77svk.PowerMultiset;
 
 [TestFixture]
-[TestOf(typeof(PowerMultisetGenerator))]
+[TestOf(typeof(PowerSetGenerator))]
 public class GetVariations_Tests
 {
     private readonly char[] _testElements = ['a', 'b', 'c', 'd', 'e'];
@@ -24,7 +24,7 @@ public class GetVariations_Tests
         }
 
         // Act
-        var actualResult = PowerMultisetGenerator.Vary(_testElements, 1)
+        var actualResult = PowerSetGenerator.Vary(_testElements, 1)
             .Select(x => x.ToArray())
             .ToArray();
 
@@ -55,7 +55,7 @@ public class GetVariations_Tests
         }
 
         // Act
-        var actualResult = PowerMultisetGenerator.Vary(_testElements, 2)
+        var actualResult = PowerSetGenerator.Vary(_testElements, 2)
             .Select(x => x.ToArray())
             .ToArray();
 
@@ -117,7 +117,7 @@ public class GetVariations_Tests
         }
 
         // Act
-        var actualResult = PowerMultisetGenerator.Vary(_testElements, _testElements.Length)
+        var actualResult = PowerSetGenerator.Vary(_testElements, _testElements.Length)
             .Select(x => x.ToArray())
             .ToArray();
 
@@ -131,12 +131,12 @@ public class GetVariations_Tests
     {
         // Arrange
         int expectedResultsCount = Factorial(_testElements.Length);
-        IList<IList<KeyValuePair<int, char>>> expectedResult = PowerMultisetGenerator.Permute(_testElements)
+        IList<IList<KeyValuePair<int, char>>> expectedResult = PowerSetGenerator.Permute(_testElements)
             .Select(x => x.ToArray())
             .ToArray();
 
         // Act
-        var actualResult = PowerMultisetGenerator.Vary(_testElements, _testElements.Length)
+        var actualResult = PowerSetGenerator.Vary(_testElements, _testElements.Length)
             .Select(x => x.ToArray())
             .ToArray();
 
