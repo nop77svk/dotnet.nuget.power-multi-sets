@@ -1,8 +1,8 @@
-namespace NoP77svk.CombiGen.Tests;
+namespace NoP77svk.PowerMultiset;
 
-internal static class CombiMath
+public static class CombiMath
 {
-    internal static int BinomialCoefficient(this int above, int below)
+    public static int BinomialCoefficient(this int above, int below)
     {
         int result = 1;
 
@@ -15,7 +15,7 @@ internal static class CombiMath
         return result;
     }
 
-    internal static long BinomialCoefficient(this long above, long below)
+    public static long BinomialCoefficient(this long above, long below)
     {
         long result = 1;
 
@@ -28,7 +28,7 @@ internal static class CombiMath
         return result;
     }
 
-    internal static int Factorial(this int value)
+    public static int Factorial(this int value)
     {
         int result = 1;
 
@@ -40,7 +40,7 @@ internal static class CombiMath
         return result;
     }
 
-    internal static long Factorial(this long value)
+    public static long Factorial(this long value)
     {
         long result = 1;
 
