@@ -1,27 +1,46 @@
 namespace NoP77svk.PowerMultiset
 {
-    public static class PowerSetGenerator
+    public static class PowerMultiSetGenerator
     {
         public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> Permute<T>(this IEnumerable<T> values)
             => Permute(values.ToArray());
 
         public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> Permute<T>(this IList<T> values)
-            => values.GeneratePowerSet(values.Count, true);
+            => values.GeneratePowerMultiSet(values.Count, true);
 
         public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> Combine<T>(this IEnumerable<T> values, int tupleSize)
             => Combine(values.ToArray(), tupleSize);
 
         public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> Combine<T>(this IList<T> values, int tupleSize)
-            => values.GeneratePowerSet(tupleSize, false);
+            => values.GeneratePowerMultiSet(tupleSize, false);
 
         public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> Vary<T>(this IEnumerable<T> values, int tupleSize)
             => Vary(values.ToArray(), tupleSize);
 
         public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> Vary<T>(this IList<T> values, int tupleSize)
-            => values.GeneratePowerSet(tupleSize, true);
+            => values.GeneratePowerMultiSet(tupleSize, true);
 
-        public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> GeneratePowerSet<T>(this IList<T> values, int tupleSize, bool elementOrderMatters)
-            => InternalGeneratePowerSetTuples(
+        public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> GeneratePowerMultiSet<T>(this IEnumerable<T> values, bool elementOrderMatters)
+            => GeneratePowerMultiSet(values.ToArray(), elementOrderMatters);
+
+        public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> GeneratePowerMultiSet<T>(this IList<T> values, bool elementOrderMatters)
+        {
+            var result = Enumerable.Empty<IEnumerable<KeyValuePair<int, T>>>();
+
+            for (int i = 0; i <= values.Count; i++)
+            {
+                var singleTupleSizeResult = values.GeneratePowerMultiSet(i, elementOrderMatters);
+                result = result.Concat(singleTupleSizeResult);
+            }
+
+            return result;
+        }
+
+        public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> GeneratePowerMultiSet<T>(this IEnumerable<T> values, int tupleSize, bool elementOrderMatters)
+            => GeneratePowerMultiSet(values.ToArray(), tupleSize, elementOrderMatters);
+
+        public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> GeneratePowerMultiSet<T>(this IList<T> values, int tupleSize, bool elementOrderMatters)
+            => InternalGeneratePowerMultiSet(
                 values: values,
                 tupleSize: tupleSize,
                 usedInputIndices: new Stack<int>(),
@@ -29,7 +48,7 @@ namespace NoP77svk.PowerMultiset
                 elementOrderMatters: elementOrderMatters
             );
 
-        private static IEnumerable<IEnumerable<KeyValuePair<int, T>>> InternalGeneratePowerSetTuples<T>(IList<T> values, int tupleSize, Stack<int> usedInputIndices, int startIndex, bool elementOrderMatters)
+        private static IEnumerable<IEnumerable<KeyValuePair<int, T>>> InternalGeneratePowerMultiSet<T>(IList<T> values, int tupleSize, Stack<int> usedInputIndices, int startIndex, bool elementOrderMatters)
         {
             if (tupleSize <= 0)
             {
@@ -56,7 +75,7 @@ namespace NoP77svk.PowerMultiset
 
                 usedInputIndices.Push(i);
                 int newStartIndex = elementOrderMatters ? 0 : i + 1;
-                var tuplesWithOneMoreElement = InternalGeneratePowerSetTuples(values, tupleSize - 1, usedInputIndices, newStartIndex, elementOrderMatters);
+                var tuplesWithOneMoreElement = InternalGeneratePowerMultiSet(values, tupleSize - 1, usedInputIndices, newStartIndex, elementOrderMatters);
 
                 foreach (var resultTuple in tuplesWithOneMoreElement)
                 {

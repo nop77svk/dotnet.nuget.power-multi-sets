@@ -5,10 +5,27 @@ using System.Collections.Generic;
 using NoP77svk.PowerMultiset;
 
 [TestFixture]
-[TestOf(typeof(PowerSetGenerator))]
+[TestOf(typeof(PowerMultiSetGenerator))]
 public class GetCombinations_Tests
 {
     private readonly char[] _testElements = ['a', 'b', 'c', 'd', 'e'];
+
+    [Test]
+    public void GetCombinations_ZeroTuple_Returns_EmptySet()
+    {
+        // Arrange
+        int expectedResultsCount = 1;
+        IList<IList<KeyValuePair<int, char>>> expectedResult = [[]];
+
+        // Act
+        var actualResult = PowerMultiSetGenerator.Combine(_testElements, 0)
+            .Select(x => x.OrderBy(kvp => kvp.Key).ToArray())
+            .ToArray();
+
+        // Assert
+        Assert.That(actualResult.Length, Is.EqualTo(expectedResultsCount));
+        Assert.That(actualResult, Is.EquivalentTo(expectedResult));
+    }
 
     [Test]
     public void GetCombinations_SingleElementTuple_Returns_SingleElementCollectionsOfAllElements()
@@ -24,7 +41,7 @@ public class GetCombinations_Tests
         }
 
         // Act
-        var actualResult = PowerSetGenerator.Combine(_testElements, 1)
+        var actualResult = PowerMultiSetGenerator.Combine(_testElements, 1)
             .Select(x => x.OrderBy(kvp => kvp.Key).ToArray())
             .ToArray();
 
@@ -50,7 +67,7 @@ public class GetCombinations_Tests
         }
 
         // Act
-        var actualResult = PowerSetGenerator.Combine(_testElements, 2)
+        var actualResult = PowerMultiSetGenerator.Combine(_testElements, 2)
             .Select(x => x.OrderBy(kvp => kvp.Key).ToArray())
             .ToArray();
 
@@ -112,7 +129,7 @@ public class GetCombinations_Tests
         }
 
         // Act
-        var actualResult = PowerSetGenerator.Combine(_testElements, _testElements.Length)
+        var actualResult = PowerMultiSetGenerator.Combine(_testElements, _testElements.Length)
             .Select(x => x.OrderBy(kvp => kvp.Key).ToArray())
             .ToArray();
 
@@ -129,7 +146,7 @@ public class GetCombinations_Tests
         IList<IList<KeyValuePair<int, char>>> expectedResult = [_testElements.Select((v, i) => new KeyValuePair<int, char>(i, v)).ToArray()];
 
         // Act
-        var actualResult = PowerSetGenerator.Combine(_testElements, _testElements.Length)
+        var actualResult = PowerMultiSetGenerator.Combine(_testElements, _testElements.Length)
             .Select(x => x.OrderBy(kvp => kvp.Key).ToArray())
             .ToArray();
 

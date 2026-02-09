@@ -5,10 +5,27 @@ using System.Collections.Generic;
 using NoP77svk.PowerMultiset;
 
 [TestFixture]
-[TestOf(typeof(PowerSetGenerator))]
+[TestOf(typeof(PowerMultiSetGenerator))]
 public class GetVariations_Tests
 {
     private readonly char[] _testElements = ['a', 'b', 'c', 'd', 'e'];
+
+    [Test]
+    public void GetVariations_ZeroTuple_Returns_EmptySet()
+    {
+        // Arrange
+        int expectedResultsCount = 1;
+        IList<IList<KeyValuePair<int, char>>> expectedResult = [[]];
+
+        // Act
+        var actualResult = PowerMultiSetGenerator.Vary(_testElements, 0)
+            .Select(x => x.OrderBy(kvp => kvp.Key).ToArray())
+            .ToArray();
+
+        // Assert
+        Assert.That(actualResult.Length, Is.EqualTo(expectedResultsCount));
+        Assert.That(actualResult, Is.EquivalentTo(expectedResult));
+    }
 
     [Test]
     public void GetVariations_SingleElementTuple_Returns_SingleElementCollectionsOfAllElements()
@@ -24,7 +41,7 @@ public class GetVariations_Tests
         }
 
         // Act
-        var actualResult = PowerSetGenerator.Vary(_testElements, 1)
+        var actualResult = PowerMultiSetGenerator.Vary(_testElements, 1)
             .Select(x => x.ToArray())
             .ToArray();
 
@@ -55,7 +72,7 @@ public class GetVariations_Tests
         }
 
         // Act
-        var actualResult = PowerSetGenerator.Vary(_testElements, 2)
+        var actualResult = PowerMultiSetGenerator.Vary(_testElements, 2)
             .Select(x => x.ToArray())
             .ToArray();
 
@@ -117,7 +134,7 @@ public class GetVariations_Tests
         }
 
         // Act
-        var actualResult = PowerSetGenerator.Vary(_testElements, _testElements.Length)
+        var actualResult = PowerMultiSetGenerator.Vary(_testElements, _testElements.Length)
             .Select(x => x.ToArray())
             .ToArray();
 
@@ -131,12 +148,12 @@ public class GetVariations_Tests
     {
         // Arrange
         int expectedResultsCount = Factorial(_testElements.Length);
-        IList<IList<KeyValuePair<int, char>>> expectedResult = PowerSetGenerator.Permute(_testElements)
+        IList<IList<KeyValuePair<int, char>>> expectedResult = PowerMultiSetGenerator.Permute(_testElements)
             .Select(x => x.ToArray())
             .ToArray();
 
         // Act
-        var actualResult = PowerSetGenerator.Vary(_testElements, _testElements.Length)
+        var actualResult = PowerMultiSetGenerator.Vary(_testElements, _testElements.Length)
             .Select(x => x.ToArray())
             .ToArray();
 
