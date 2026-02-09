@@ -1,6 +1,6 @@
-namespace NoP77svk.CombiGen
+namespace NoP77svk.PowerMultiset
 {
-    public static class CombiGenerator
+    public static class PowerMultisetGenerator
     {
         public static IEnumerable<IEnumerable<KeyValuePair<int, T>>> GetPermutations<T>(this IEnumerable<T> values)
             => GetPermutations(values.ToArray());

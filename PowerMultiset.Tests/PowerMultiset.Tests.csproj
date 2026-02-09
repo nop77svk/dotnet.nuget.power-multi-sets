@@ -5,8 +5,8 @@
 		<OutputType>Library</OutputType>
 		<IsPackable>false</IsPackable>
 
-		<RootNamespace>NoP77svk.CombiGen.Tests</RootNamespace>
-		<AssemblyName>NoP77svk.CombiGen.Tests</AssemblyName>
+		<RootNamespace>NoP77svk.PowerMultiset.Tests</RootNamespace>
+		<AssemblyName>NoP77svk.PowerMultiset.Tests</AssemblyName>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 
 		<SuppressTfmSupportBuildErrors>true</SuppressTfmSupportBuildErrors>
@@ -23,7 +23,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\CombiGen\CombiGen.csproj" />
+		<ProjectReference Include="..\PowerMultiset\PowerMultiset.csproj" />
 	</ItemGroup>
 
 </Project>

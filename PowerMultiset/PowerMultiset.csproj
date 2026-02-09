@@ -3,10 +3,10 @@
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<OutputType>Library</OutputType>
 
-		<RootNamespace>NoP77svk.CombiGen</RootNamespace>
-		<AssemblyName>NoP77svk.CombiGen</AssemblyName>
+		<RootNamespace>NoP77svk.PowerMultiset</RootNamespace>
+		<AssemblyName>NoP77svk.PowerMultiset</AssemblyName>
 
-		<PackageId>NoP77svk.CombiGen</PackageId>
+		<PackageId>NoP77svk.PowerMultiset</PackageId>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageIcon>combi-gen.icon.png</PackageIcon>
 		<PackageLicenseExpression>CC-BY-SA-4.0</PackageLicenseExpression>

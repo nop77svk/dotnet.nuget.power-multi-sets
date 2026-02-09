@@ -1,23 +1,20 @@
-namespace NoP77svk.CombiGen.Tests;
+namespace NoP77svk.PowerMultiset.Tests;
 
-using System;
 using System.Collections.Generic;
-using System.Numerics;
-using System.Text;
 
-using NoP77svk.CombiGen;
+using NoP77svk.PowerMultiset;
 
 [TestFixture]
-[TestOf(typeof(CombiGenerator))]
-public class GetVariations_Tests
+[TestOf(typeof(PowerMultisetGenerator))]
+public class GetCombinations_Tests
 {
     private readonly char[] _testElements = ['a', 'b', 'c', 'd', 'e'];
 
     [Test]
-    public void GetVariations_SingleElementTuple_Returns_SingleElementCollectionsOfAllElements()
+    public void GetCombinations_SingleElementTuple_Returns_SingleElementCollectionsOfAllElements()
     {
         // Arrange
-        int expectedResultsCount = _testElements.Length;
+        int expectedResultsCount = CombiMath.BinomialCoefficient(_testElements.Length, 1);
 
         IList<IList<KeyValuePair<int, char>>> expectedResult = new List<IList<KeyValuePair<int, char>>>();
         for (int i = 0; i < _testElements.Length; i++)
@@ -27,8 +24,8 @@ public class GetVariations_Tests
         }
 
         // Act
-        var actualResult = CombiGenerator.GetVariations(_testElements, 1)
-            .Select(x => x.ToArray())
+        var actualResult = PowerMultisetGenerator.GetCombinations(_testElements, 1)
+            .Select(x => x.OrderBy(kvp => kvp.Key).ToArray())
             .ToArray();
 
         // Assert
@@ -37,29 +34,24 @@ public class GetVariations_Tests
     }
 
     [Test]
-    public void GetVariations_DoubleElementTuple_Returns_ProperDoublesOfElements()
+    public void GetCombinations_DoubleElementTuple_Returns_ProperDoublesOfElements()
     {
         // Arrange
-        int expectedResultsCount = _testElements.Length * (_testElements.Length - 1);
+        int expectedResultsCount = CombiMath.BinomialCoefficient(_testElements.Length, 2);
 
         IList<IList<KeyValuePair<int, char>>> expectedResult = new List<IList<KeyValuePair<int, char>>>();
-        for (int i = 0; i < _testElements.Length; i++)
+        for (int i = 0; i < _testElements.Length - 1; i++)
         {
-            for (int j = 0; j < _testElements.Length; j++)
+            for (int j = i + 1; j < _testElements.Length; j++)
             {
-                if (j == i)
-                {
-                    continue;
-                }
-
-                KeyValuePair<int, char>[] expectedVariaton = [new(i, _testElements[i]), new(j, _testElements[j])];
-                expectedResult.Add(expectedVariaton);
+                KeyValuePair<int, char>[] expectedCombination = [new(i, _testElements[i]), new(j, _testElements[j])];
+                expectedResult.Add(expectedCombination);
             }
         }
 
         // Act
-        var actualResult = CombiGenerator.GetVariations(_testElements, 2)
-            .Select(x => x.ToArray())
+        var actualResult = PowerMultisetGenerator.GetCombinations(_testElements, 2)
+            .Select(x => x.OrderBy(kvp => kvp.Key).ToArray())
             .ToArray();
 
         // Assert
@@ -68,43 +60,43 @@ public class GetVariations_Tests
     }
 
     [Test]
-    public void GetVariations_FullLengthTuple_Returns_ProperAllElementsTuples()
+    public void GetCombinations_FullLengthTuple_Returns_ProperAllElementsTuples()
     {
         // Arrange
-        int expectedResultsCount = Factorial(_testElements.Length);
+        int expectedResultsCount = 1;
 
         IList<IList<KeyValuePair<int, char>>> expectedResult = new List<IList<KeyValuePair<int, char>>>();
         for (int a = 0; a < _testElements.Length; a++)
         {
-            for (int b = 0; b < _testElements.Length; b++)
+            for (int b = a + 1; b < _testElements.Length; b++)
             {
                 if (b == a)
                 {
                     continue;
                 }
 
-                for (int c = 0; c < _testElements.Length; c++)
+                for (int c = b + 1; c < _testElements.Length; c++)
                 {
                     if (c == a || c == b)
                     {
                         continue;
                     }
 
-                    for (int d = 0; d < _testElements.Length; d++)
+                    for (int d = c + 1; d < _testElements.Length; d++)
                     {
                         if (d == a || d == b || d == c)
                         {
                             continue;
                         }
 
-                        for (int e = 0; e < _testElements.Length; e++)
+                        for (int e = d + 1; e < _testElements.Length; e++)
                         {
                             if (e == a || e == b || e == c || e == d)
                             {
                                 continue;
                             }
 
-                            KeyValuePair<int, char>[] expectedVariaton = [
+                            KeyValuePair<int, char>[] expectedCombination = [
                                 new(a, _testElements[a]),
                                 new(b, _testElements[b]),
                                 new(c, _testElements[c]),
@@ -112,7 +104,7 @@ public class GetVariations_Tests
                                 new(e, _testElements[e])
                             ];
 
-                            expectedResult.Add(expectedVariaton);
+                            expectedResult.Add(expectedCombination);
                         }
                     }
                 }
@@ -120,8 +112,8 @@ public class GetVariations_Tests
         }
 
         // Act
-        var actualResult = CombiGenerator.GetVariations(_testElements, _testElements.Length)
-            .Select(x => x.ToArray())
+        var actualResult = PowerMultisetGenerator.GetCombinations(_testElements, _testElements.Length)
+            .Select(x => x.OrderBy(kvp => kvp.Key).ToArray())
             .ToArray();
 
         // Assert
@@ -130,33 +122,19 @@ public class GetVariations_Tests
     }
 
     [Test]
-    public void GetVariations_FullLengthTuple_Returns_ActualPermutations()
+    public void GetCombinations_FullLengthTuple_Returns_TheInputInArbitraryOrder()
     {
         // Arrange
-        int expectedResultsCount = Factorial(_testElements.Length);
-        IList<IList<KeyValuePair<int, char>>> expectedResult = CombiGenerator.GetPermutations(_testElements)
-            .Select(x => x.ToArray())
-            .ToArray();
+        int expectedResultsCount = 1;
+        IList<IList<KeyValuePair<int, char>>> expectedResult = [_testElements.Select((v, i) => new KeyValuePair<int, char>(i, v)).ToArray()];
 
         // Act
-        var actualResult = CombiGenerator.GetVariations(_testElements, _testElements.Length)
-            .Select(x => x.ToArray())
+        var actualResult = PowerMultisetGenerator.GetCombinations(_testElements, _testElements.Length)
+            .Select(x => x.OrderBy(kvp => kvp.Key).ToArray())
             .ToArray();
 
         // Assert
         Assert.That(actualResult.Length, Is.EqualTo(expectedResultsCount));
         Assert.That(actualResult, Is.EquivalentTo(expectedResult));
-    }
-
-    private static int Factorial(int value)
-    {
-        int result = 1;
-
-        for (int i = 2; i <= value; i++)
-        {
-            result *= i;
-        }
-
-        return result;
     }
 }

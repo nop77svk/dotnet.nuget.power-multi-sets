@@ -1,4 +1,4 @@
 <Solution>
-  <Project Path="CombiGen.Tests/CombiGen.Tests.csproj" />
-  <Project Path="CombiGen/CombiGen.csproj" />
+  <Project Path="PowerMultiset.Tests/PowerMultiset.Tests.csproj" />
+  <Project Path="PowerMultiset/PowerMultiset.csproj" />
 </Solution>
