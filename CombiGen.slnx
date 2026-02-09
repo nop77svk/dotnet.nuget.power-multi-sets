@@ -1,4 +1,0 @@
-<Solution>
-  <Project Path="CombiGen.Tests/CombiGen.Tests.csproj" />
-  <Project Path="CombiGen/CombiGen.csproj" />
-</Solution>

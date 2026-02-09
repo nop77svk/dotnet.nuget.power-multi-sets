@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="PowerMultiset.Tests/PowerMultiset.Tests.csproj" />
+  <Project Path="PowerMultiset/PowerMultiset.csproj" />
+</Solution>

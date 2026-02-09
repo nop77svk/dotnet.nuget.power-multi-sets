@@ -1,20 +1,37 @@
-namespace NoP77svk.CombiGen.Tests;
+namespace NoP77svk.PowerMultiset.Tests;
 
-using System;
 using System.Collections.Generic;
-using System.Text;
 
-using NoP77svk.CombiGen;
+using NoP77svk.PowerMultiset;
 
+[TestFixture]
+[TestOf(typeof(PowerMultiSetGenerator))]
 public class GetCombinations_Tests
 {
     private readonly char[] _testElements = ['a', 'b', 'c', 'd', 'e'];
 
     [Test]
+    public void GetCombinations_ZeroTuple_Returns_EmptySet()
+    {
+        // Arrange
+        int expectedResultsCount = 1;
+        IList<IList<KeyValuePair<int, char>>> expectedResult = [[]];
+
+        // Act
+        var actualResult = PowerMultiSetGenerator.Combine(_testElements, 0)
+            .Select(x => x.OrderBy(kvp => kvp.Key).ToArray())
+            .ToArray();
+
+        // Assert
+        Assert.That(actualResult.Length, Is.EqualTo(expectedResultsCount));
+        Assert.That(actualResult, Is.EquivalentTo(expectedResult));
+    }
+
+    [Test]
     public void GetCombinations_SingleElementTuple_Returns_SingleElementCollectionsOfAllElements()
     {
         // Arrange
-        int expectedResultsCount = CombiMath.BinomialCoefficient(_testElements.Length, 1);
+        int expectedResultsCount = _testElements.Length.Over(1);
 
         IList<IList<KeyValuePair<int, char>>> expectedResult = new List<IList<KeyValuePair<int, char>>>();
         for (int i = 0; i < _testElements.Length; i++)
@@ -24,7 +41,7 @@ public class GetCombinations_Tests
         }
 
         // Act
-        var actualResult = CombiGenerator.GetCombinations(_testElements, 1)
+        var actualResult = PowerMultiSetGenerator.Combine(_testElements, 1)
             .Select(x => x.OrderBy(kvp => kvp.Key).ToArray())
             .ToArray();
 
@@ -37,7 +54,7 @@ public class GetCombinations_Tests
     public void GetCombinations_DoubleElementTuple_Returns_ProperDoublesOfElements()
     {
         // Arrange
-        int expectedResultsCount = CombiMath.BinomialCoefficient(_testElements.Length, 2);
+        int expectedResultsCount = _testElements.Length.Over(2);
 
         IList<IList<KeyValuePair<int, char>>> expectedResult = new List<IList<KeyValuePair<int, char>>>();
         for (int i = 0; i < _testElements.Length - 1; i++)
@@ -50,7 +67,7 @@ public class GetCombinations_Tests
         }
 
         // Act
-        var actualResult = CombiGenerator.GetCombinations(_testElements, 2)
+        var actualResult = PowerMultiSetGenerator.Combine(_testElements, 2)
             .Select(x => x.OrderBy(kvp => kvp.Key).ToArray())
             .ToArray();
 
@@ -112,7 +129,7 @@ public class GetCombinations_Tests
         }
 
         // Act
-        var actualResult = CombiGenerator.GetCombinations(_testElements, _testElements.Length)
+        var actualResult = PowerMultiSetGenerator.Combine(_testElements, _testElements.Length)
             .Select(x => x.OrderBy(kvp => kvp.Key).ToArray())
             .ToArray();
 
@@ -129,7 +146,7 @@ public class GetCombinations_Tests
         IList<IList<KeyValuePair<int, char>>> expectedResult = [_testElements.Select((v, i) => new KeyValuePair<int, char>(i, v)).ToArray()];
 
         // Act
-        var actualResult = CombiGenerator.GetCombinations(_testElements, _testElements.Length)
+        var actualResult = PowerMultiSetGenerator.Combine(_testElements, _testElements.Length)
             .Select(x => x.OrderBy(kvp => kvp.Key).ToArray())
             .ToArray();
 
