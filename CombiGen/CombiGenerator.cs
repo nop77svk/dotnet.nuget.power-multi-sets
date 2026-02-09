@@ -41,14 +41,15 @@ namespace NoP77svk.CombiGen
                     continue;
                 }
 
-                Stack<int> newUsedInputIndices = new Stack<int>(usedInputIndices);
-                newUsedInputIndices.Push(i);
-                var oneMoreElementVariations = InternalGetVariations(values, tupleSize - 1, newUsedInputIndices, startIndexSelector);
+                usedInputIndices.Push(i);
+                var oneMoreElementVariations = InternalGetVariations(values, tupleSize - 1, usedInputIndices, startIndexSelector);
 
                 foreach (var variation in oneMoreElementVariations)
                 {
                     yield return variation;
                 }
+
+                usedInputIndices.Pop();
             }
         }
     }
