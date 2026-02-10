@@ -10,11 +10,11 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageIcon>combi-gen.icon.png</PackageIcon>
 		<PackageLicenseExpression>CC-BY-SA-4.0</PackageLicenseExpression>
-		<PackageTags>library;netstandard</PackageTags>
+		<PackageTags>combinatorics;multiset;powermultiset;combinations;variations;permutations;library;netstandard</PackageTags>
 		<PackageType>Library</PackageType>
 		
 		<RepositoryType>git</RepositoryType>
-		<RepositoryUrl>https://github.com/nop77svk/dotnet.combi-gen</RepositoryUrl>
+		<RepositoryUrl>https://github.com/nop77svk/dotnet.nuget.power-multi-sets.git</RepositoryUrl>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
@@ -23,7 +23,7 @@
 
 	<ItemGroup>
 		<None Include="$(ProjectDir)/../_assets/README.md" Pack="true" PackagePath="/" />
-		<None Include="$(ProjectDir)/../_assets/combi-gen.icon.png" Pack="true" PackagePath="/" />
+		<None Include="$(ProjectDir)/../_assets/power-multi-set.icon.png" Pack="true" PackagePath="/" />
 		<None Include="$(ProjectDir)/../_assets/LICENSE" Pack="true" PackagePath="/" />
 	</ItemGroup>
 </Project>
