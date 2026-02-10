@@ -8,9 +8,9 @@
 
 		<PackageId>NoP77svk.PowerMultiset</PackageId>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackageIcon>combi-gen.icon.png</PackageIcon>
+		<PackageIcon>power-multi-set.icon.png</PackageIcon>
 		<PackageLicenseExpression>CC-BY-SA-4.0</PackageLicenseExpression>
-		<PackageTags>combinatorics;multiset;powermultiset;combinations;variations;permutations;library;netstandard</PackageTags>
+		<PackageTags>multiset;powermultiset;submultiset;combinations;variations;permutations;library;netstandard</PackageTags>
 		<PackageType>Library</PackageType>
 		
 		<RepositoryType>git</RepositoryType>
