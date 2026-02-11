@@ -11,7 +11,6 @@
 		<PackageIcon>power-multi-set.png</PackageIcon>
 		<PackageLicenseExpression>CC-BY-SA-4.0</PackageLicenseExpression>
 		<PackageTags>multiset;powermultiset;submultiset;combinations;variations;permutations;library;netstandard</PackageTags>
-		<PackageType>Library</PackageType>
 		
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/nop77svk/dotnet.nuget.power-multi-sets.git</RepositoryUrl>
