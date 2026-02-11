@@ -3,14 +3,14 @@
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<OutputType>Library</OutputType>
 
-		<RootNamespace>NoP77svk.PowerMultiset</RootNamespace>
-		<AssemblyName>NoP77svk.PowerMultiset</AssemblyName>
+		<RootNamespace>NoP77svk.PowerMultisets</RootNamespace>
+		<AssemblyName>NoP77svk.PowerMultisets</AssemblyName>
 
-		<PackageId>NoP77svk.PowerMultiset</PackageId>
+		<PackageId>NoP77svk.PowerMultisets</PackageId>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackageIcon>combi-gen.icon.png</PackageIcon>
+		<PackageIcon>power-multi-set.png</PackageIcon>
 		<PackageLicenseExpression>CC-BY-SA-4.0</PackageLicenseExpression>
-		<PackageTags>combinatorics;multiset;powermultiset;combinations;variations;permutations;library;netstandard</PackageTags>
+		<PackageTags>multiset;powermultiset;submultiset;combinations;variations;permutations;library;netstandard</PackageTags>
 		<PackageType>Library</PackageType>
 		
 		<RepositoryType>git</RepositoryType>
@@ -22,8 +22,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="$(ProjectDir)/../_assets/README.md" Pack="true" PackagePath="/" />
-		<None Include="$(ProjectDir)/../_assets/power-multi-set.icon.png" Pack="true" PackagePath="/" />
-		<None Include="$(ProjectDir)/../_assets/LICENSE" Pack="true" PackagePath="/" />
+		<None Include="$(ProjectDir)../_assets/README.md" Pack="true" PackagePath="/" />
+		<None Include="$(ProjectDir)../_assets/power-multi-set.png" Pack="true" PackagePath="/" />
+		<None Include="$(ProjectDir)../_assets/LICENSE" Pack="true" PackagePath="/" />
 	</ItemGroup>
 </Project>

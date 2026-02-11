@@ -1,4 +1,4 @@
-namespace NoP77svk.PowerMultiset
+namespace NoP77svk.PowerMultisets
 {
     public static class PowerMultiSetGenerator
     {
@@ -134,12 +134,12 @@ namespace NoP77svk.PowerMultiset
             => InternalGenerateSubMultiSet(
                 values: values,
                 tupleSize: tupleSize,
-                usedInputIndices: new Stack<int>(),
+                usedInputIndices: new HashSet<int>(),
                 startIndex: 0,
                 elementOrder: elementOrder
             );
 
-        private static IEnumerable<IEnumerable<KeyValuePair<int, T>>> InternalGenerateSubMultiSet<T>(IList<T> values, int tupleSize, Stack<int> usedInputIndices, int startIndex, SubMultiSetElementOrder elementOrder)
+        private static IEnumerable<IEnumerable<KeyValuePair<int, T>>> InternalGenerateSubMultiSet<T>(IList<T> values, int tupleSize, HashSet<int> usedInputIndices, int startIndex, SubMultiSetElementOrder elementOrder)
         {
             if (tupleSize <= 0)
             {
@@ -155,16 +155,14 @@ namespace NoP77svk.PowerMultiset
                 yield break;
             }
 
-            HashSet<int> usedInputIndicesIndexed = usedInputIndices.ToHashSet();
-
             for (int i = startIndex; i < values.Count; i++)
             {
-                if (usedInputIndicesIndexed.Contains(i))
+                if (usedInputIndices.Contains(i))
                 {
                     continue;
                 }
 
-                usedInputIndices.Push(i);
+                usedInputIndices.Add(i);
                 int newStartIndex = elementOrder switch
                 {
                     SubMultiSetElementOrder.Matters => 0,
@@ -179,7 +177,7 @@ namespace NoP77svk.PowerMultiset
                     yield return resultTuple;
                 }
 
-                usedInputIndices.Pop();
+                usedInputIndices.Remove(i);
             }
         }
     }
