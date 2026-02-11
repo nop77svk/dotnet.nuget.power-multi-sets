@@ -16,6 +16,6 @@ This library allows you to generate combinations, variations and permutations fr
 
 ## Useful Links
 
-- [Source Code](https://github.com/nop77svk/dotnet.nuget.power-multi-set)
-- [Change Log](https://github.com/nop77svk/dotnet.nuget.power-multi-set/releases)
+- [Source Code](https://github.com/nop77svk/dotnet.nuget.power-multi-sets)
+- [Change Log](https://github.com/nop77svk/dotnet.nuget.power-multi-sets/releases)
 - [Author](https://www.linkedin.com/in/code-we-trust/)
