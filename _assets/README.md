@@ -1,10 +1,10 @@
-# Power-(multi-)set Generators
+# Power-multi-set Generators
 
-Allow you to generate combinations, variations and permutations from IEnumerables in the LINQ fashion.
+This library allows you to generate combinations, variations and permutations from IEnumerables in the LINQ fashion.
 
 ## Features
 
-- Generate essential power-sets from your C# collections.
+- Generate essential power-multi-sets from your C# collections.
 - Lightweight and (hopefully) fast.
 - Open source and free to use.
 - Comprehensive unit tests to ensure reliability and documentation of examples.
@@ -16,6 +16,6 @@ Allow you to generate combinations, variations and permutations from IEnumerable
 
 ## Useful Links
 
-- [Source Code](https://github.com/nop77svk/nop77svk.combi-gen)
-- [Change Log](https://github.com/nop77svk/nop77svk.combi-gen/releases)
+- [Source Code](https://github.com/nop77svk/dotnet.nuget.power-multi-set)
+- [Change Log](https://github.com/nop77svk/dotnet.nuget.power-multi-set/releases)
 - [Author](https://www.linkedin.com/in/code-we-trust/)

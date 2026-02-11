@@ -8,7 +8,7 @@
 
 		<PackageId>NoP77svk.PowerMultiset</PackageId>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackageIcon>power-multi-set.icon.png</PackageIcon>
+		<PackageIcon>power-multi-set.png</PackageIcon>
 		<PackageLicenseExpression>CC-BY-SA-4.0</PackageLicenseExpression>
 		<PackageTags>multiset;powermultiset;submultiset;combinations;variations;permutations;library;netstandard</PackageTags>
 		<PackageType>Library</PackageType>
@@ -23,7 +23,7 @@
 
 	<ItemGroup>
 		<None Include="$(ProjectDir)/../_assets/README.md" Pack="true" PackagePath="/" />
-		<None Include="$(ProjectDir)/../_assets/power-multi-set.icon.png" Pack="true" PackagePath="/" />
+		<None Include="$(ProjectDir)/../_assets/power-multi-set.png" Pack="true" PackagePath="/" />
 		<None Include="$(ProjectDir)/../_assets/LICENSE" Pack="true" PackagePath="/" />
 	</ItemGroup>
 </Project>
