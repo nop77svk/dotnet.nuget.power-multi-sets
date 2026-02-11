@@ -1,4 +1,4 @@
-namespace NoP77svk.PowerMultiset;
+namespace NoP77svk.PowerMultisets;
 
 public static class CombiMath
 {

@@ -1,8 +1,8 @@
-namespace NoP77svk.PowerMultiset.Tests;
+namespace NoP77svk.PowerMultisets.Tests;
 
 using System.Collections.Generic;
 
-using NoP77svk.PowerMultiset;
+using NoP77svk.PowerMultisets;
 
 [TestFixture]
 [TestOf(typeof(PowerMultiSetGenerator))]
